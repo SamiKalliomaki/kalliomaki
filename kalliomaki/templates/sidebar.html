@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% load sekizai_tags cms_tags staticfiles %}
+
+{% block title %}{% page_attribute "page_title" %}{% endblock title %}
+
+{% block content %}
+    {% addtoblock "css" %}
+        <link rel="stylesheet" href="{% static 'css/sidebar.css' %}">
+    {% endaddtoblock %}
+
+    {% addtoblock "js" %}
+        <script>
+            function resizeSidebarBackground() {
+                $('#sidebar-background').width($('#sidebar-content').width() + 30);
+            }
+
+            $(window).resize(resizeSidebarBackground);
+            $(resizeSidebarBackground);
+        </script>
+    {% endaddtoblock %}
+
+    <div class="container-fluid">
+        <div class="row">
+            <div id="sidebar" class="col-md-3 col-sm-4">
+                <div id="sidebar-background"></div>
+
+                <div id="sidebar-content">
+                    {% placeholder "sidebar" %}
+                </div>
+            </div>
+            <div class="col-md-9 col-sm-8">
+                <div class="container-fluid">
+                    {% placeholder "content" %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}

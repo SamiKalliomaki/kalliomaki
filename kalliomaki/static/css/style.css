@@ -1,0 +1,8 @@
+cms_plugin p {
+  max-width: 50em;
+}
+.post-item header .post-detail {
+  color: #777777;
+  font-size: 12px;
+  margin-right: 10px;
+}

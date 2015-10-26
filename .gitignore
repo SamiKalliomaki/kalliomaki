@@ -1,0 +1,7 @@
+*.pyc
+
+/kalliomaki/static/css/*.less
+
+/venv
+/project.db
+/envsettings.py
