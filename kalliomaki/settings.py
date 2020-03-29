@@ -12,14 +12,12 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.7/ref/settings/
 """
 
-import os
-
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.7/howto/deployment/checklist/
-ALLOWED_HOSTS = ['kalliomaki.me', 'kalliomaki.appspot.com', '127.0.0.1']
+ALLOWED_HOSTS = ['kalliomaki.me', '.appspot.com', '127.0.0.1']
 
 # Application definition
 ROOT_URLCONF = 'kalliomaki.urls'
