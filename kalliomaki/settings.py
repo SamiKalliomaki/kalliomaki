@@ -1,7 +1,6 @@
 import os
 from config.envsettings import DEBUG, SECRET_KEY, DATABASES
 
-gettext = lambda s: s
 DATA_DIR = os.path.dirname(os.path.dirname(__file__))
 """
 Django settings for kalliomaki project.
@@ -13,40 +12,22 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.7/ref/settings/
 """
 
-# Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
-BASE_DIR = os.path.dirname(os.path.dirname(__file__))
+
+# Build paths inside the project like this: os.path.join(BASE_DIR, ...)
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.7/howto/deployment/checklist/
-
-
-
-# SECURITY WARNING: don't run with debug turned on in production!
-TEMPLATE_DEBUG = DEBUG
-
-ALLOWED_HOSTS = ['kalliomaki.me']
-
+ALLOWED_HOSTS = ['kalliomaki.me', 'kalliomaki.appspot.com', '127.0.0.1']
 
 # Application definition
-
-
-
-
-
 ROOT_URLCONF = 'kalliomaki.urls'
 
 WSGI_APPLICATION = 'kalliomaki.wsgi.application'
 
-
-# Database
-# https://docs.djangoproject.com/en/1.7/ref/settings/#databases
-
-
-
 # Internationalization
 # https://docs.djangoproject.com/en/1.7/topics/i18n/
-
 LANGUAGE_CODE = 'en'
 
 TIME_ZONE = 'Europe/Helsinki'
@@ -57,14 +38,10 @@ USE_L10N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
-
 STATIC_URL = '/static/'
-MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(DATA_DIR, 'media')
-STATIC_ROOT = os.path.join(DATA_DIR, 'static')
+STATIC_ROOT = os.path.join(DATA_DIR, 'out/static')
 
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'kalliomaki', 'static'),
@@ -72,16 +49,14 @@ STATICFILES_DIRS = (
 )
 SITE_ID = 1
 
-TEMPLATES = [
-{
+TEMPLATES = [{
     'BACKEND': 'django.template.backends.django.DjangoTemplates',
     'DIRS': [
         os.path.join(BASE_DIR, 'kalliomaki', 'templates'),
     ],
     'APP_DIRS': True,
     'OPTIONS': {
-        'context_processors':
-            (
+        'context_processors': (
             'django.contrib.auth.context_processors.auth',
             'django.template.context_processors.debug',
             'django.template.context_processors.i18n',
@@ -93,8 +68,8 @@ TEMPLATES = [
             'django.contrib.messages.context_processors.messages',
             'sekizai.context_processors.sekizai',
             'cms.context_processors.cms_settings',
-            ),
-	'debug': DEBUG
+        ),
+        'debug': DEBUG
     }
 },
 ]
@@ -129,8 +104,6 @@ INSTALLED_APPS = (
     'treebeard',
     'djangocms_text_ckeditor',
     'djangocms_style',
-    'djangocms_column',
-    'djangocms_file',
     'djangocms_flash',
     'djangocms_googlemap',
     'djangocms_inherit',
@@ -138,42 +111,39 @@ INSTALLED_APPS = (
     'djangocms_picture',
     'djangocms_teaser',
     'djangocms_video',
-    'reversion',
 
     'filer',
     'easy_thumbnails',
-    'cmsplugin_filer_image',
+    'aldryn_apphooks_config',
     'parler',
     'taggit',
     'taggit_autosuggest',
     'meta',
-    'meta_mixin',
+    'sortedm2m',
     'djangocms_blog',
 
     'kalliomaki',
 )
 
 LANGUAGES = (
-    ## Customize this
-    ('en', gettext('en')),
-    ('fi', gettext('fi')),
+    ('en', 'en'),
+    ('fi', 'fi'),
 )
 
 CMS_LANGUAGES = {
-    ## Customize this
     1: [
         {
             'redirect_on_fallback': True,
             'code': 'en',
             'hide_untranslated': False,
-            'name': gettext('en'),
+            'name': 'en',
             'public': True,
         },
         {
             'redirect_on_fallback': True,
             'code': 'fi',
             'hide_untranslated': False,
-            'name': gettext('fi'),
+            'name': 'fi',
             'public': True,
         },
     ],
@@ -185,7 +155,6 @@ CMS_LANGUAGES = {
 }
 
 CMS_TEMPLATES = (
-    ## Customize this
     ('page.html', 'Page'),
     ('feature.html', 'Page with Feature'),
     ('sidebar.html', 'Page with Sidebar')
@@ -206,7 +175,7 @@ META_USE_SITES = True
 
 PARLER_LANGUAGES = {
     1: (
-        {'code': 'en',},
-        {'code': 'fi',},
+        {'code': 'en'},
+        {'code': 'fi'},
     ),
 }

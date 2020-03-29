@@ -2,6 +2,7 @@
 
 /kalliomaki/static/css/*.less
 
-/venv
+/env
 /project.db
-/envsettings.py
+/config
+/out
